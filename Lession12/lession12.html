@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chuyển Đổi Hình Ảnh</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+    h2 {
+      color: blue;
+    }
+    .container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+    }
+    .side-images {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .side-images img {
+      width: 100px;
+      height: 80px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .side-images img:hover {
+      transform: scale(1.1);
+    }
+    .main-image img {
+      width: 400px;
+      height: 300px;
+      border: 3px solid #000;
+    }
+  </style>
+</head>
+<body>
+
+<h2>CHUYỂN ĐỔI HÌNH ẢNH</h2>
+<div class="container">
+  <div class="side-images">
+    <img src="img1.jpg" class="thumbnail">
+    <img src="img2.jpg" class="thumbnail">
+    <img src="img3.jpg" class="thumbnail">
+  </div>
+
+  <!-- ảnh lớn -->
+  <div class="main-image">
+    <img id="mainImage" src="img1.jpg">
+  </div>
+
+  <div class="side-images">
+    <img src="img4.jpg" class="thumbnail">
+    <img src="img5.jpg" class="thumbnail">
+    <img src="img6.jpg" class="thumbnail">
+  </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded" , function () {
+      const thumpnails = document.querySelectorAll(".thumbnail");
+      const mainImage = document.getElementById("mainImage");
+
+      thumpnails.forEach(img => {
+        img.addEventListener("mouseover" , function () {
+          mainImage.src = this.src;
+        })
+      })
+    })
+</script>
+
+</body>
+</html>
+
+<!--
+📌 Giải thích JavaScript
+Chọn tất cả ảnh nhỏ (.thumbnail)
+
+Dùng querySelectorAll(".thumbnail") để lấy danh sách ảnh nhỏ.
+Lắng nghe sự kiện mouseover
+
+Dùng addEventListener("mouseover", function() {...}) để thay đổi ảnh lớn.
+Thay đổi ảnh lớn (mainImage.src = this.src)
+
+Khi di chuột vào ảnh nhỏ, ảnh lớn cập nhật theo.
+-->

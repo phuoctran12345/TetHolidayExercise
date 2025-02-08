@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Đối Tượng String</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif; /* Chọn font chữ cho toàn bộ trang */
+            display: flex; /* Sử dụng flexbox để căn giữa nội dung */
+            justify-content: center; /* Căn giữa theo chiều ngang */
+            padding: 20px; /* Tạo khoảng cách với viền trình duyệt */
+        }
+
+        .container {
+            padding: 20px; /* Tạo khoảng cách bên trong container */
+            width: 400px; /* Chiều rộng của container */
+            border-radius: 5px; /* Bo tròn góc của container */
+        }
+
+        .title {
+            padding: 5px; /* Tạo khoảng cách cho phần tiêu đề */
+            margin: -20px -20px 20px -20px; /* Điều chỉnh margin để tiêu đề nằm gọn trong container, loại bỏ phần padding mặc định */
+            text-align: center; /* Căn giữa tiêu đề */
+        }
+
+        .form-group {
+            margin-bottom: 15px; /* Tạo khoảng cách giữa các nhóm form */
+            display: flex; /* Sử dụng flexbox cho nhóm form */
+        }
+        .form-group-1 { /* Nhóm form đặc biệt (nếu cần) */
+            margin-bottom: 15px; /* Tạo khoảng cách giữa các nhóm form */
+            display: flex; /* Sử dụng flexbox cho nhóm form */
+        }
+
+        label {
+            display: flex; /* Hiển thị label dạng flexbox để dễ dàng căn chỉnh */
+            margin-bottom: 5px; /* Tạo khoảng cách bên dưới label */
+        }
+
+        textarea {
+            width: 100%; /* Chiều rộng của textarea */
+            height: 100px; /* Chiều cao của textarea */
+            margin-bottom: 10px; /* Tạo khoảng cách bên dưới textarea */
+        }
+
+        input[type="text"] {
+            width: 50px; /* Chiều rộng của input type text */
+            padding: 5px; /* Tạo khoảng cách bên trong input */
+            margin: 0px 10px; /* Tạo khoảng cách giữa các input */
+            height: 18px; /* Chiều cao của input */
+        }
+
+        .result {
+            display: inline-block; /* Hiển thị kết quả dạng inline-block để có thể căn chỉnh theo chiều ngang */
+            background-color: #87CEEB; /* Màu nền của phần kết quả (Light Sky Blue) */
+            min-width: 50px; /* Chiều rộng tối thiểu của phần kết quả */
+            height: 25px; /* Chiều cao của phần kết quả */
+            margin-left: 10px; /* Tạo khoảng cách bên trái của phần kết quả */
+            vertical-align: middle; /* Căn giữa theo chiều dọc */
+        }
+
+        .buttons {
+            text-align: center; /* Căn giữa các nút */
+            margin-top: 20px; /* Tạo khoảng cách bên trên của các nút */
+        }
+
+        button {
+            margin: 0 10px; /* Tạo khoảng cách giữa các nút */
+            padding: 5px 20px; /* Tạo khoảng cách bên trong nút */
+        }
+
+        .horizontal-line {
+            width: 100%; /* Chiều rộng của thanh ngang */
+            height: 2px; /* Chiều cao của thanh ngang */
+            background-color: #bdbdbd; /* Màu xám */
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3); /* Hiệu ứng đổ bóng */
+            margin: 20px 0; /* Khoảng cách trên và dưới của thanh ngang */
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="title">ĐỐI TƯỢNG STRING</div>
+
+    <div class="form-group">
+        <label>Nhập đoạn văn:</label>
+        <textarea id="inputText"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Tổng số ký tự:</label>
+        <div class="result" id="totalChars"></div>
+    </div>
+
+    <div class="horizontal-line"></div>
+
+    <div class="form-group">
+        <label>Nhập vị trí:
+            <input type="text" id="position">
+            Ký tự tương ứng:
+            <div class="result" id="charAtPosition"></div>
+        </label>
+    </div>
+
+    <div class="horizontal-line"></div>
+
+    <div class="form-group">
+        <label>Nhập chuỗi:
+            <input type="text" id="searchString">
+            Vị trí tương ứng:
+            <div class="result" id="stringPosition"></div>
+        </label>
+    </div>
+
+    <div class="horizontal-line"></div>
+
+    <div class="form-group">
+        <label>Nhập vị trí cắt tách Từ:
+            <input type="text" id="startPos">
+            Đến
+            <input type="text" id="endPos">
+            Kết quả
+            <div class="result" id="substringResult"></div>
+        </label>
+    </div>
+
+    <div class="buttons">
+        <button onclick="processString()">Nhập lại</button>
+        <button onclick="resetForm()">Thoát</button>
+    </div>
+</div>
+
+<script lang="javascript">
+    function processString() {
+        const paragraph = document.getElementById('inputText').value;
+        const totalChars = paragraph.length;
+        document.getElementById('totalChars').textContent = totalChars; // Sử dụng textContent để gán giá trị cho div
+
+        const position = parseInt(document.getElementById('position').value);
+        if (!isNaN(position) && position >= 1 && position <= totalChars) {
+            document.getElementById('charAtPosition').textContent = paragraph.charAt(position - 1); // Sử dụng textContent
+        } else {
+            document.getElementById('charAtPosition').textContent = ""; // Sử dụng textContent
+        }
+
+        const searchString = document.getElementById('searchString').value; // Sửa lại ID thành searchString
+        document.getElementById('stringPosition').textContent = paragraph.indexOf(searchString); // Sử dụng textContent
+
+        const startPos = parseInt(document.getElementById('startPos').value);
+        const endPos = parseInt(document.getElementById('endPos').value);
+        if (!isNaN(startPos) && !isNaN(endPos) && startPos >= 1 && endPos <= totalChars && startPos <= endPos) {
+            document.getElementById('substringResult').textContent = paragraph.substring(startPos - 1, endPos); // Sử dụng textContent
+        } else {
+            document.getElementById('substringResult').textContent = ""; // Sử dụng textContent
+        }
+    }
+
+    function resetForm() { // Sửa lại tên hàm thành resetForm
+        document.getElementById('inputText').value = ""; // Sửa lại ID thành inputText
+        document.getElementById('totalChars').textContent = ""; // Sử dụng textContent
+        document.getElementById('position').value = "";
+        document.getElementById('charAtPosition').textContent = ""; // Sử dụng textContent
+        document.getElementById('searchString').value = ""; // Sửa lại ID thành searchString
+        document.getElementById('stringPosition').textContent = ""; // Sử dụng textContent
+        document.getElementById('startPos').value = "";
+        document.getElementById('endPos').value = "";
+        document.getElementById('substringResult').textContent = ""; // Sử dụng textContent
+    }
+</script>
+</body>
+</html>

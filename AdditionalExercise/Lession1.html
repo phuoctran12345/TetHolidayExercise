@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <h1>GIAI PHUONG TRINH BAC NHAT</h1>
+        <label>Nhập a:</label>
+          <input type="number" id="a"><br>
+          <label>Nhập b:</label>
+          <input type="number" id="b"><br>
+          <button onclick="giaiPT()">Giai PT</button>
+          <button onclick="thoat()">THOAT</button>
+          <h2>KET LUAN NGHIEM</h2>
+        <input type="text" id="ketqua" readonly> <!--readonly: Thuộc tính này làm cho trường nhập liệu chỉ được phép đọc, người dùng không thể chỉnh sửa nội dung bên trong.-->
+    </div>
+    <script lang="javascript">
+        function giaiPT() {
+            let a = parseInt(document.getElementById("a").value);
+            let b = parseInt(document.getElementById("b").value);
+            let ketqua= "";
+
+            if (isNaN(a) || isNaN(b)) {
+                alert("Vui long nhap day du gia tri a va b");
+                return;
+            }
+
+            if (a === 0) {
+                if ( b === 0 ) {
+                    ketqua ="Phuong  trinh vo so nghiem";
+                } else {
+                    ketqua = "phuong trinh vo nghiem ";
+                }
+            } else  {
+                let x= -b/a;
+                ketqua = "Phuong tirnh co 1 nghiem x = " + x.toFixed(3); //x.toFixed(3) -> lấy 3 chữ số đằng sau số 0
+            }
+
+            document.getElementById("ketqua").value=ketqua;
+
+        }
+
+        function thoat() {
+            document.getElementById("a").value = "";
+            document.getElementById("b").value = "";
+            document.getElementById("ketqua").value = "";
+        }
+    </script>
+</body>
+</html>

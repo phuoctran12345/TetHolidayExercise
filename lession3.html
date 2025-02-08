@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<br>
+<h1>Thuc hien phep toan</h1>
+
+<label for="t1">Nhap a:</label>
+<input type="text" id="t1" name="t1"><br><br>
+
+<label for="t2">Nhap b:</label>
+<input type="text" id="t2" name="t2"><br><br>
+
+
+
+<!-- Buttons for operations-->
+<button onclick="t3.value = tong(t1 , t2)">Total (Sum) </button>
+<button onclick="t3.value = hieu(t1 , t2)">Subtract </button>
+<button onclick="t3.value = tich(t1 , t2)">Multiply </button>
+<button onclick="t3.value = thuong(t1 , t2)">Divide </button> </br>
+
+<label for="t3">Result:</label>
+<input type="text" id="t3" name="t3" readonly><br><br>
+
+<script lang="javascript">
+    function tong(a, b) {
+        var c = parseInt(a.value) + parseInt(b.value);
+        return c;
+    }
+    function hieu(a, b) {
+        var c = parseInt(a.value) - parseInt(b.value);
+        return c;
+    }
+    function tich(a, b) {
+        var c = parseInt(a.value) * parseInt(b.value);
+        return c;
+    }
+    function thuong(a, b) {
+        if (b == 0) {
+            return "Cannot divide by zero";
+        }
+        var c = parseInt(a.value) / parseInt(b.value);
+        return c;
+    }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div>
+        <h1>GIAI PHUONG TRINH BAC NHAT</h1>
+        <label>Nhập a:</label>
+        <input type="number" id="a"><br>
+        <label>Nhập b:</label>
+        <input type="number" id="b"><br>
+        <label>Nhập c:</label>
+        <input type="number" id="c"><br>
+        <button onclick="giaiPTbac2()">Giai PT</button>
+        <button onclick="thoat()">THOAT</button>
+        <h2>KET LUAN NGHIEM</h2>
+        <input type="text" id="ketqua" readonly> <!--readonly: Thuộc tính này làm cho trường nhập liệu chỉ được phép đọc, người dùng không thể chỉnh sửa nội dung bên trong.-->
+    </div>
+    <script>
+        function giaiPTbac2() {
+            let a = parseInt(document.getElementById("a").value);
+            let b = parseInt(document.getElementById("b").value);
+            let c = parseInt(document.getElementById("c").value);
+            let ketqua= ""
+
+            if (isNaN(a) || isNaN(b) || isNaN(c))  {
+                alert("Vui long nhap day du gia tri a, b và c");
+                return;
+            }
+
+            if (a === 0) {
+                if (b === 0 ) {
+                    ketqua = (c === 0 ) ? " Phuong trinh vo so nghiem nghiem" : "phuong trinh vo nghiem";
+                } else {
+                    let x = -c/ b;
+                    ketqua = " phuong trinh co nghiem la" + x.toFixed(3);
+                }
+            } else {
+                let delta = b * b  - 4 * a  * c;
+                if (delta <0) {
+                    ketqua = " phuong trinh vo nghiem";
+                } else  if (delta > 0 ) {
+                    let x = -b/ (2*a);
+                    ketqua = "phuong trinh co nghiem kep x = " + x.toFixed(3);
+                } else {
+                    let x1 = (-b + Math.sqrt(delta)) / (2*a);
+                    let x2 = (-b - Math.sqrt(delta)) / (2*a);
+                    ketqua = "phuong trinh co 2 nghiem : x1=" +x1.toFixed(3) + ", x2 = " + x2.toFixed(3);
+                }
+            }
+
+            document.getElementById("ketqua").value = ketqua;
+        }
+
+        function thoat() {
+            document.getElementById("a").value = "";
+            document.getElementById("b").value = "";
+            document.getElementById("c").value = "";
+            document.getElementById("ketqua").value = "";
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

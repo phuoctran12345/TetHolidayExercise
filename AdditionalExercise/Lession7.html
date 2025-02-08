@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>n! Giai Thừa!</title>
+</head>
+<body>
+    <h2>Tính giai thừa</h2>
+    <label for="n">Nhập số n (không âm):</label>
+    <input type="number" id="n">
+    <div id="error" class="error"></div><br>
+    <button onclick="calculate()">Tính</button>
+    <div id="result"></div>
+    <script>
+        function calculate() {
+          const n = parseInt(document.getElementById("n").value);
+          const errorDiv = document.getElementById("error");
+          const resultDiv = document.getElementById("result");
+
+          if (isNaN(n) || n < 0) {
+            errorDiv.textContent = "n phải là số không âm.";
+            resultDiv.textContent = "";
+            return;
+          }
+
+          const factorial = factorialRecursive(n); // Hoặc factorialLoop(n)
+
+          errorDiv.textContent = "";
+          resultDiv.textContent = `Giai thừa của ${n} là: ${factorial}`;
+        }
+
+        function factorialRecursive(n) {
+          if (n === 0) {
+            return 1;
+          } else {
+            return n * factorialRecursive(n - 1); // Gọi đệ quy chính nó
+          }
+        }
+
+        // Hàm lặp (không đệ quy) - Nếu bạn muốn dùng cách lặp
+        function factorialLoop(n) {
+          let result = 1;
+          for (let i = 1; i <= n; i++) {
+            result *= i;
+          }
+          return result;
+        }
+    </script>
+</body>
+</html>

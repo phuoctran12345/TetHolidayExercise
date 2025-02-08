@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lession9</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+        }
+
+        header {
+            background-color: #007ACC;
+            color: white;
+            padding: 5px;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .old-alert {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: Arial, sans-serif;
+            color: #333;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .old-alert img {
+            margin-left: 10px;
+        }
+
+        .old-alert button {
+            background-color: #ccc;
+            border: none;
+            border-radius: 3px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        .old-alert button:hover {
+            background-color: #ddd;
+        }
+
+        #result {
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <span style="font-weight: bold; float: left;">Microsoft Internet Explorer</span>
+    <button id="closeButton" style="border: none; background: transparent; cursor: pointer; float: right;">X</button>
+</header>
+
+<div class="old-alert" id="alertBox">
+    <img src="icon-warning.png" alt="Cảnh báo">
+    <div>
+        <h3>Hệ thống đã xảy ra lỗi</h3>
+        <p>Vui lòng kiểm tra lại thông tin và thử lại.</p>
+        <div id="result"></div>
+    </div>
+    <button id="okButton">OK</button>
+</div>
+
+<script>
+    function showDateTime() {
+        const now = new Date();
+        const options = {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        };
+        const formattedDateTime = now.toLocaleDateString('en-US', options);
+        document.getElementById("result").innerHTML = formattedDateTime;
+    }
+
+    // Lấy nút đóng cửa sổ
+    const okButton = document.getElementById('okButton');
+
+    // Thêm sự kiện khi click vào nút OK
+    okButton.addEventListener('click', () => {
+        // Ẩn cửa sổ thông báo bằng cách thay đổi thuộc tính display
+        document.getElementById('alertBox').style.display = 'none';
+    });
+
+
+
+    // Gọi hàm showDateTime() khi trang được tải
+    showDateTime();
+</script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1>DAY SO LE LIEN TIEP</h1>
+<label>Nhập n (tu 10 den 100):</label>
+<input type="number" id="n"><br>
+
+<button onclick="tinhTong()">TinhTong</button>
+<button onclick="thoat()">THOAT</button>
+<h2>KET QUA</h2>
+<input type="text" id="ketqua" readonly>
+
+<script>
+  function tinhTong() {
+    let n = parseInt(document.getElementById("n").value);
+
+    do {
+      n = parseInt(document.getElementById("n").value);
+      if (isNaN(n) || n < 10 || n > 100) {
+        alert("Giá trị không hợp lệ. Vui lòng nhập lại.");
+        document.getElementById("n").value = ""; // Xóa giá trị cũ trong ô input
+      }
+    } while (isNaN(n) || n < 10 || n > 100); // Lặp lại nếu n không hợp lệ
+
+    let ketqua= "";
+    x= Math.sqrt(n);
+
+    ketqua = " ket qua can bac hai n la: " + x.toFixed(3);
+
+    document.getElementById("ketqua").value = ketqua;
+  }
+
+  function thoat() { // return the first value
+    document.getElementById("n").value = "";
+    document.getElementById("ketqua").value = "";
+  }
+</script>
+</body>
+</html>

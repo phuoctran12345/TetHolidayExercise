@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Các Thao Tác Với Mảng</title>
+    <style>
+        /* Add your CSS styles here */
+        body {
+            font-family: sans-serif;
+        }
+        /* ... rest of the CSS styles */
+    </style>
+</head>
+
+<body>
+<h1>Các thao tác với mảng:</h1>
+<div id="result">
+    <p>Kết quả:</p>
+    <textarea id="result-text" rows="5" cols="30" readonly></textarea>
+</div>
+
+<div id="options">
+    <div>
+        <input type="radio" name="action" id="inputArray" value="input">
+        <label for="inputArray">Nhập mảng</label>
+    </div>
+    <div>
+        <input type="radio" name="action" id="printArray" value="print">
+        <label for="printArray">In mảng</label>
+    </div>
+    <div>
+        <input type="radio" name="action" id="sumOdd" value="sumOdd">
+        <label for="sumOdd">Tổng lẻ</label>
+    </div>
+    <div>
+        <input type="radio" name="action" id="productEven" value="productEven">
+        <label for="productEven">Tích chẵn</label>
+    </div>
+    <div>
+        <input type="radio" name="action" id="sortArray" value="sort">
+        <label for="sortArray">Sắp xếp</label>
+    </div>
+</div>
+
+<button id="execute">Thực hiện</button>
+<button id="exit">Thoát</button>
+
+<script>
+    const executeButton = document.getElementById('execute');
+    const exitButton = document.getElementById('exit');
+    const resultText = document.getElementById('result-text');
+    const options = document.querySelectorAll('input[name="action"]'); // Corrected
+
+    let array = [];
+
+    executeButton.addEventListener('click', () => {
+        const selectedAction = document.querySelector('input[name="action"]:checked');
+
+        if (!selectedAction) {
+            resultText.value = "Vui lòng chọn thao tác!";
+            return;
+        }
+
+        const action = selectedAction.value;
+
+        switch (action) {
+            case 'input':
+                const inputArray = prompt("Nhập mảng (các số cách nhau bởi dấu phẩy):");
+                if (inputArray) {
+                    array = inputArray.split(',').map(Number);
+                    resultText.value = "Mảng đã được nhập.";
+                } else {
+                    resultText.value = "Vui lòng nhập mảng.";
+                }
+                break;
+            case 'print':
+                resultText.value = array.join(', ');
+                break;
+            case 'sumOdd':
+                const sumOdd = array.reduce((sum, num) => (num % 2 !== 0 ? sum + num : sum), 0);
+                resultText.value = `Tổng các số lẻ: ${sumOdd}`;
+                break;
+            case 'productEven':
+                const productEven = array.reduce((product, num) => (num % 2 === 0 ? product * num : product), 1);
+                resultText.value = `Tích các số chẵn: ${productEven}`;
+                break;
+            case 'sort':
+                array.sort((a, b) => a - b);
+                resultText.value = `Mảng đã được sắp xếp: ${array.join(', ')}`;
+                break;
+        }
+    });
+
+    // đoạn cdoe dùng để khi click vào nút xoá sẽ tắt đi window
+    exitButton.addEventListener('click', () => {
+        window.close();
+    });
+</script>
+</body>
+
+</html>

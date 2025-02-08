@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <h1> Đăng kí thành viên</h1>
+  <form id="registerForm">
+    <label>Tên truy cập: <input type="text" id="username" maxlength="8"> (*)</label><br>
+    <label>Mật khẩu: <input type="password" id="password"> (*)</label><br>
+    <label>Nhập lại mật khẩu: <input type="password" id="confirmPassword"> (*)</label><br>
+    <label>Tên đầy đủ: <input type="text" id="fullname"> (*)</label><br>
+    <label>
+      Giới tính:
+          <select id="gender">
+            <option value="Nữ">Nữ</option>
+            <option value="Nam">Nam</option>
+          </select>
+    </label><br>
+    <label>Email: <input type="text" id="email"> (*)</label><br>
+    <label>Địa chỉ: <textarea id="address"></textarea></label><br>
+
+    <div class="button-group">
+      <button type="button" onclick="validateForm()">Đăng kí</button>
+      <button type="reset">Thoát</button>
+    </div>
+  </form>
+
+  <script lang="javascript">
+    function validateForm() {
+      let username = document.getElementById("username").value;
+      let password = document.getElementById("password").value;
+      let confirmPassword = document.getElementById("confirmPassword").value;
+      let email =document.getElementById("email").value;
+
+      if (username.length > 8) {
+        alert("tên truy cập tối đa 8 ký tự  ");
+        return;
+      }
+
+
+      if (password !== confirmPassword) {
+        alert("mật khẩu không khớp");
+        return;
+      }
+
+      if (email.includes(" ") || !email.includes("@")) {
+        alert("Email không hợp lệ");
+        return;
+      }
+
+      // Hiển thị thông báo đnagw kí thành công
+      alert("đăng kí thành công!");
+      // Xóa dữ liệu trên form sau khi đăng ký thành công
+      document.getElementById("registerForm").reset();
+    }
+  </script>
+</body>
+</html>

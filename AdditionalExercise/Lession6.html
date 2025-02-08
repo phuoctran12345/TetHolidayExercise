@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>So ngay trong thang</h1>
+    <label class="month">Thang: </label>
+    <input type="number" id="month" min="1" max="12">
+    <label class="year">Nam: </label>
+    <input type="number" id="year">
+    <div id="error" class="error"></div><br>
+    <button onclick="tinhTong()">TinhTong</button>
+    <button onclick="thoat()">THOAT</button>
+    <div id="result"></div>
+
+    <script>
+        function calculate() {
+            const month = parseInt(document.getElementById("month").value);
+            const year = parseInt(document.getElementById("year").value);
+            const errorDiv = parseInt(document.getElementById("error").value);
+            const resultDiv = parseInt(document.getElementById("result").value);
+
+            if(isNaN(month) || isNaN(year) || month<1 || month>12 || year < 0) {
+                errorDiv.textContent = "thang va nam khong hop le";
+                resultDiv.textContent = "";
+                return;
+            }
+
+            const dayInMonth = getDaysInMonth(month,year);
+
+            if (dayInMonth === -1) {
+                errorDiv.textContent = " Nma khong hop le" ; // truong hop khi nam am
+                resultDiv.textContent = "";
+                return;
+            }
+
+            errorDiv.textContent= "";
+            resultDiv.textContent = `thang ${month} nam ${year} co ${dayInMonth} ngay`;
+        }
+
+        function getDaysInMonth(month , year) {
+            if (month === 2) {
+                if ((year % 4 === 0 && year % 100 != 0 )|| year % 400 === 0) {
+                    return 29;
+                } else  {
+                    return 28;
+                }
+            } else if (month === 4 || month === 6 || month === 9 || month === 11) {
+                return  30;
+            } else {
+                return 31;
+            }
+        }
+    </script>
+</body>
+</html>

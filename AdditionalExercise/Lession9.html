@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Xử lý mảng số nguyên</title>
+</head>
+<body>
+<h1>Xử lý mảng số nguyên</h1>
+
+<label for="n">Nhập số lượng phần tử (n): </label>
+<input type="number" id="n">
+<button onclick="nhapMang()">Nhập mảng</button><br><br>
+
+<div id="mang-div"></div><br>
+
+<button onclick="inMang()">In mảng</button>
+<button onclick="tongDuong()">Tổng số nguyên dương</button>
+<button onclick="tichAm()">Tích số nguyên âm</button><br><br>
+
+<button onclick="demLe()">Đếm số lẻ</button>
+<button onclick="demChan()">Đếm số chẵn</button><br><br>
+
+<div id="result"></div>
+<div id="error" class="error" style="color: red;"></div>
+
+<script>
+    let mang = [];
+
+    function nhapMang() {
+        const n = parseInt(document.getElementById("n").value);
+        const errorDiv = document.getElementById("error");
+        const mangDiv = document.getElementById("mang-div");
+
+        if (isNaN(n) || n <= 0) {
+            errorDiv.textContent = "Vui lòng nhập số nguyên dương cho n.";
+            mangDiv.innerHTML = "";
+            return;
+        }
+
+        mang = []; // Xóa mảng cũ
+        mangDiv.innerHTML = ""; // Xóa nội dung cũ
+        errorDiv.textContent = "";
+
+        for (let i = 0; i < n; i++) {
+            const input = document.createElement("input");
+            input.type = "number";
+            input.placeholder = `Phần tử ${i + 1}`;
+            input.classList.add("mang-input");
+            mangDiv.appendChild(input);
+            mangDiv.appendChild(document.createTextNode(" "));
+        }
+    }
+
+    function capNhatMang() {
+        const inputs = document.querySelectorAll(".mang-input");
+        mang = Array.from(inputs).map(input => parseInt(input.value) || 0);
+    }
+
+    function inMang() {
+        capNhatMang();
+        const resultDiv = document.getElementById("result");
+        const errorDiv = document.getElementById("error");
+
+        if (mang.length === 0) {
+            errorDiv.textContent = "Mảng đang rỗng. Vui lòng nhập mảng trước.";
+            resultDiv.textContent = "";
+            return;
+        }
+
+        resultDiv.textContent = "Mảng: " + mang.join(", ");
+        errorDiv.textContent = "";
+    }
+
+    function tongDuong() {
+        capNhatMang();
+        const resultDiv = document.getElementById("result");
+        const errorDiv = document.getElementById("error");
+
+        if (mang.length === 0) {
+            errorDiv.textContent = "Mảng rỗng. Vui lòng nhập dữ liệu.";
+            resultDiv.textContent = "";
+            return;
+        }
+
+        let sum = mang.reduce((acc, num) => num > 0 ? acc + num : acc, 0);
+        resultDiv.textContent = "Tổng số dương: " + sum;
+        errorDiv.textContent = "";
+    }
+
+    function tichAm() {
+        capNhatMang();
+        const resultDiv = document.getElementById("result");
+        const errorDiv = document.getElementById("error");
+
+        if (mang.length === 0) {
+            errorDiv.textContent = "Mảng rỗng. Vui lòng nhập dữ liệu.";
+            resultDiv.textContent = "";
+            return;
+        }
+
+        let product = 1;
+        let hasNegative = false;
+
+        for (const num of mang) {
+            if (num < 0) {
+                product *= num;
+                hasNegative = true;
+            }
+        }
+
+        resultDiv.textContent = hasNegative ? `Tích số âm: ${product}` : "Mảng không có số âm.";
+        errorDiv.textContent = "";
+    }
+
+    function demLe() {
+        capNhatMang();
+        const resultDiv = document.getElementById("result");
+        const errorDiv = document.getElementById("error");
+
+        if (mang.length === 0) {
+            errorDiv.textContent = "Mảng rỗng. Vui lòng nhập dữ liệu.";
+            resultDiv.textContent = "";
+            return;
+        }
+
+        let count = mang.filter(num => num % 2 !== 0).length;
+        resultDiv.textContent = "Số lượng số lẻ: " + count;
+        errorDiv.textContent = "";
+    }
+
+    function demChan() {
+        capNhatMang();
+        const resultDiv = document.getElementById("result");
+        const errorDiv = document.getElementById("error");
+
+        if (mang.length === 0) {
+            errorDiv.textContent = "Mảng rỗng. Vui lòng nhập dữ liệu.";
+            resultDiv.textContent = "";
+            return;
+        }
+
+        let count = mang.filter(num => num % 2 === 0).length;
+        resultDiv.textContent = "Số lượng số chẵn: " + count;
+        errorDiv.textContent = "";
+    }
+</script>
+</body>
+</html>

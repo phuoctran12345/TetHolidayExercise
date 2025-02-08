@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+<h1>DAY SO LE LIEN TIEP</h1>
+<label>Nhập n:</label>
+<input type="number" id="n"><br>
+
+<button onclick="tinhTong()">TinhTong</button>
+<button onclick="thoat()">THOAT</button>
+<h2>KET QUA</h2>
+<input type="text" id="ketqua" readonly>
+
+<script>
+  function tinhTong() {
+    let n = parseInt(document.getElementById("n").value);
+    let ketqua= "";
+
+    if (isNaN(n) || n <= 0) {
+      alert("Vui long nhap mot so nguyen duong");
+      return;
+    }
+
+    let sole = [];
+    for (let i = 1; i <= n ;i += 2) {
+      sole.push(i); // push in array ; create a array before create !
+    }
+
+    ketqua = "Day so le tu 1 den " + n + ": " + sole.join(", ");
+
+    document.getElementById("ketqua").value = ketqua;
+  }
+
+  function thoat() { // return the first value
+    document.getElementById("n").value = "";
+    document.getElementById("ketqua").value = "";
+  }
+</script>
+</body>
+</html>

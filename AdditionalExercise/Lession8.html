@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kiem tra so nguyen to</title>
+</head>
+<body>
+    <h1>Kiem tra so nguyen to</h1>
+    <label class="n" >Nhap so n: </label>
+    <input type="number" id="n">
+    <div id="error" class="error"></div><br>
+    <button onclick="checkPrime()">Kiểm tra</button>
+    <div id="result"></div>
+    <script>
+        function checkPrime() {
+          const n = parseInt(document.getElementById("n").value);
+          const errorDiv = document.getElementById("error");
+          const resultDiv = document.getElementById("result");
+
+          if (isNaN(n)) {
+            errorDiv.textContent = "vui long nhap mot so nguyen.";
+            resultDiv.textContent = "";
+            return;
+          }
+
+          if ( n <= 1) {
+            errorDiv.textContent = "so nguyejn to phai lon hon 1.";
+            resultDiv.textContent = "";
+            return;
+          }
+
+          const isPrime = isPrimeNumber(n);  // Truyền n vào hàm isPrimeNumber
+
+          errorDiv.textContent = "";
+          resultDiv.textContent = `${n} ${isPrime ? "là số nguyên tố" : "không phải là số nguyên tố"}.`;
+        }
+
+        function isPrimeNumber(n) { // xu ly o day xong se tra o phia tren
+            if (n <= 1) return false;
+            if ( n <= 3) return true; // vi 3 la so nguyen to
+            if (n % 2 === 0  || n % 3  === 0 ) return false; //Loại bỏ các số chẵn và bội số của 3
+            for (let i = 5; i * i <= n ; i += 6) {
+              if (n % i === 0 || n % (i + 2) === 0 ) return false;
+            }
+
+          return true;
+        }
+    </script>
+</body>
+</html>

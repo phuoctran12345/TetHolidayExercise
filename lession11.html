@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .container {
+            gap: 30px;
+            max-width: 1000px;
+            margin: 20px auto;
+            font-family: Arial, sans-serif;
+        }
+
+        .text-box {
+            flex: 2;
+            border: 3px solid pink;
+            padding: 15px;
+            min-height: 200px;
+        }
+
+        .controls {
+            flex: 1;
+        }
+
+        .title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .control-item {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .control-item input {
+            /* flex: 1; */
+            padding: 5px;
+            padding-right: 20%;
+            margin-left: 9%;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .control-item label {
+            color: purple;
+            font-size: 14px;
+        }
+
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            margin-left: 13%;
+        }
+
+        .buttons button {
+            padding: 5px 15px;
+            background: #f0f0f0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            color: purple;
+            cursor: pointer;
+        }
+
+        #preview-text {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-box" id="preview-text">
+            Văn tế nghĩa sĩ Cần Giuộc ngồi đền thiêng liêng trong văn học.
+            Cụ Đồ Chiểu chỉ là một nhà thơ mù, một người hát rong của nhân dân, một số tác phẩm cụ để lại mà tiêu biểu nhất là Văn tế nghĩa sĩ Cần Giuộc đã làm giàu cho văn học Việt Nam ở vào thời điểm thử thách khắc nghiệt nhất cho văn học và cho lịch sử đất nước.
+        </div>
+
+        <div class="controls">
+
+            <h2 style="margin-left: 10%;">THAY ĐỔI THUỘC TÍNH CỦA ĐOẠN VĂN TRÊN</h2>
+
+            <div class="control-item">
+                <input type="text" id="text-color">
+                <label>màu chữ</label>
+            </div>
+
+            <div class="control-item">
+                <input type="text" id="bg-color">
+                <label>màu nền</label>
+            </div>
+
+            <div class="control-item">
+                <input type="text" id="font-size">
+                <label>cỡ chữ</label>
+            </div>
+
+            <div class="control-item">
+                <input type="text" id="font-family">
+                <label>Font chữ</label>
+            </div>
+
+            <div class="buttons">
+                <button onclick="applyChanges()">Thực hiện</button>
+                <button onclick="resetChanges()">Thoát</button>
+            </div>
+        </div>
+    </div>
+    <script lang="javascript">
+        function applyChanges() {
+            const textColor = document.getElementById('text-color').value; // put the object
+            const bgColor = document.getElementById('bg-color').value; // put the object
+            const fontSize = document.getElementById('font-size').value; // put the object
+            const fontFamily = document.getElementById('font-family').value;
+
+            const previewText = document.getElementById('preview-text');
+
+            previewText.style.color = textColor;
+            previewText.style.backgroundColor = bgColor;
+            previewText.style.fontSize =  `${fontSize}px`;
+            previewText.style.fontFamily = fontFamily;
+        }
+
+        function resetChanges() {
+            const previewText = document.getElementById('preview-text');
+            previewText.style.color = '#000000';
+            previewText.style.backgroundColor = '#ffffff';
+            previewText.style.fontSize =  '16px';
+            previewText.style.fontFamily = 'Arial';
+
+            document.getElementById('text-color').value = '#000000';
+            document.getElementById('bg-color').value = '#ffffff';
+            document.getElementById('font-size').value = '16';
+            document.getElementById('font-family').value = 'Arial';
+        }
+    </script>
+</body>
+</html>
+
+
+
+
